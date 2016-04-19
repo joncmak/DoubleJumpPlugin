@@ -1,0 +1,20 @@
+name: TestPlugin
+main: io.github.joncmak.TestPlugin.TestPlugin
+version: 1.0
+commands:
+    reload:
+        description: Reload command
+        usage: TestPlugin reload
+        permission: TestPlugin.reload
+    block:
+        description: Change broken block
+        usage: TestPlugin block <block>
+        permission: TestPlugin.block
+    join:
+        description: Change join message
+        usage: TestPlugin join <message>
+        permission: TestPlugin.join
+    firstjoin:
+        description: Change first join message
+        usage: TestPlugin firstjoin <message>
+        permission: TestPlugin.firstjoin
