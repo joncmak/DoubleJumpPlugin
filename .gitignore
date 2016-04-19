@@ -50,4 +50,7 @@ Temporary Items
 .classpath
 .project
 .settings/
+
+# Maven
+log/
 target/
