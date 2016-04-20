@@ -16,11 +16,7 @@ public class PlayerListener implements Listener
 	{
 		mPlugin = pPlugin;
 	}
-	
-	/*
-	 * TODO: replace messages with config message
-	 * add support for colour codes
-	 */
+
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent pEvent)
 	{
