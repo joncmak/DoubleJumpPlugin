@@ -1,6 +1,6 @@
 package io.github.joncmak.TestPlugin;
 
-import org.bukkit.Location;
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.event.EventHandler;
@@ -19,11 +19,22 @@ public class BlockListener implements Listener
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent pEvent)
 	{
+		//pEvent.setCancelled(true);
 		//replace block
 		Block block = pEvent.getBlock();
-		Location location = block.getLocation();
 		
 		//TODO replace with config block
-		location.getBlock().setType(Material.BEDROCK);
+//		block.setType(Material.GLASS);
+//		block.getState().update();
+		
+		Bukkit.getScheduler().runTaskLater(mPlugin, new Runnable()
+		{
+			@Override
+			public void run()
+			{
+				block.setType(Material.BEDROCK);
+				block.getState().update();
+			}
+		}, 20);
 	}
 }
