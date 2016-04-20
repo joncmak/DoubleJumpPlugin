@@ -9,9 +9,9 @@ import org.bukkit.event.block.BlockBreakEvent;
 
 public class BlockListener implements Listener
 {
-	private TestPlugin mPlugin;
+	private PluginMain mPlugin;
 	
-	public BlockListener (TestPlugin pPlugin)
+	public BlockListener (PluginMain pPlugin)
 	{
 		mPlugin = pPlugin;
 	}
@@ -19,20 +19,17 @@ public class BlockListener implements Listener
 	@EventHandler
 	public void onBlockBreak(BlockBreakEvent pEvent)
 	{
-		//pEvent.setCancelled(true);
-		//replace block
 		Block block = pEvent.getBlock();
-		
-		//TODO replace with config block
-//		block.setType(Material.GLASS);
-//		block.getState().update();
 		
 		Bukkit.getScheduler().runTaskLater(mPlugin, new Runnable()
 		{
 			@Override
 			public void run()
 			{
-				block.setType(Material.BEDROCK);
+				String blockname = mPlugin.getConfig().getString("block").toUpperCase();
+				Material newMaterial = Material.getMaterial(blockname) != null ? Material.getMaterial(blockname) : Material.BEDROCK;
+
+				block.setType(newMaterial);
 				block.getState().update();
 			}
 		}, 20);

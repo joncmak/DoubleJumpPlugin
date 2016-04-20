@@ -1,15 +1,18 @@
 package io.github.joncmak.TestPlugin;
 
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
+import net.md_5.bungee.api.ChatColor;
+
 public class PlayerListener implements Listener
 {
-	private final TestPlugin mPlugin;
+	private final PluginMain mPlugin;
 	
-	public PlayerListener(TestPlugin pPlugin)
+	public PlayerListener(PluginMain pPlugin)
 	{
 		mPlugin = pPlugin;
 	}
@@ -21,18 +24,19 @@ public class PlayerListener implements Listener
 	@EventHandler
 	public void onPlayerJoin(PlayerJoinEvent pEvent)
 	{
+		FileConfiguration fileConfig = mPlugin.getConfig();
 		Player player = pEvent.getPlayer();
 		if(player.hasPlayedBefore())
 		{
 			//send other msg
-			player.sendMessage("welcome back");
-			mPlugin.getLogger().info(pEvent.getPlayer().getName() + " joined");
+			String text = fileConfig.getString("join");
+			player.sendMessage(ChatColor.translateAlternateColorCodes('&', text));
 		}
 		else
 		{
 			//send first msg
-			player.sendMessage("welcome to the server");
-			mPlugin.getLogger().info(pEvent.getPlayer().getName() + " joined first");
+			String text = fileConfig.getString("firstjoin");
+			player.sendMessage(ChatColor.translateAlternateColorCodes('&', text));
 		}
 	}
 }
