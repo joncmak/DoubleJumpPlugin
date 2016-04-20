@@ -23,6 +23,7 @@ public class PluginMain extends JavaPlugin
 	{	
 		this.saveDefaultConfig();
 
+		//setup listeners
 		PluginManager pluginManager = this.getServer().getPluginManager();
 		pluginManager.registerEvents(mPlayerListener, this);
 		pluginManager.registerEvents(mBlockListener, this);		
@@ -32,6 +33,7 @@ public class PluginMain extends JavaPlugin
 	public boolean onCommand(CommandSender pSender, Command pCommand, String pLabel, String[] pArguments)
 	{	
 		FileConfiguration fileConfig = this.getConfig();
+		
 		if(pCommand.getName().equalsIgnoreCase("testplugin.reload"))
 		{
 			if(pArguments.length != 0)

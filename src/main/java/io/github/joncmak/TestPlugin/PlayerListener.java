@@ -22,17 +22,41 @@ public class PlayerListener implements Listener
 	{
 		FileConfiguration fileConfig = mPlugin.getConfig();
 		Player player = pEvent.getPlayer();
+		
+		String text = "";
 		if(player.hasPlayedBefore())
 		{
 			//send other msg
-			String text = fileConfig.getString("join");
-			player.sendMessage(ChatColor.translateAlternateColorCodes('&', text));
+			try
+			{
+				text = ChatColor.translateAlternateColorCodes('&', fileConfig.getString("join"));
+			}
+			catch (Exception ex)
+			{
+				// encountered error, send unformatted string
+				text = fileConfig.getString("join");
+			}
+			finally
+			{
+				player.sendMessage(text);
+			}
 		}
 		else
 		{
 			//send first msg
-			String text = fileConfig.getString("firstjoin");
-			player.sendMessage(ChatColor.translateAlternateColorCodes('&', text));
+			try
+			{
+				text = ChatColor.translateAlternateColorCodes('&', fileConfig.getString("firstjoin"));
+			}
+			catch (Exception ex)
+			{
+				// encountered error, send unformatted string
+				text = fileConfig.getString("firstjoin");
+			}
+			finally
+			{
+				player.sendMessage(text);
+			}
 		}
 	}
 }

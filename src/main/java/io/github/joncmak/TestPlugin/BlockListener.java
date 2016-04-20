@@ -23,6 +23,7 @@ public class BlockListener implements Listener
 		
 		Bukkit.getScheduler().runTaskLater(mPlugin, new Runnable()
 		{
+			// replace block after small delay
 			@Override
 			public void run()
 			{
